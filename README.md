@@ -1,25 +1,5 @@
 # egg-etcd-grpc
 
-[![NPM version][npm-image]][npm-url]
-[![build status][travis-image]][travis-url]
-[![Test coverage][codecov-image]][codecov-url]
-[![David deps][david-image]][david-url]
-[![Known Vulnerabilities][snyk-image]][snyk-url]
-[![npm download][download-image]][download-url]
-
-[npm-image]: https://img.shields.io/npm/v/egg-etcd-grpc.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/egg-etcd-grpc
-[travis-image]: https://img.shields.io/travis/eggjs/egg-etcd-grpc.svg?style=flat-square
-[travis-url]: https://travis-ci.org/eggjs/egg-etcd-grpc
-[codecov-image]: https://img.shields.io/codecov/c/github/eggjs/egg-etcd-grpc.svg?style=flat-square
-[codecov-url]: https://codecov.io/github/eggjs/egg-etcd-grpc?branch=master
-[david-image]: https://img.shields.io/david/eggjs/egg-etcd-grpc.svg?style=flat-square
-[david-url]: https://david-dm.org/eggjs/egg-etcd-grpc
-[snyk-image]: https://snyk.io/test/npm/egg-etcd-grpc/badge.svg?style=flat-square
-[snyk-url]: https://snyk.io/test/npm/egg-etcd-grpc
-[download-image]: https://img.shields.io/npm/dm/egg-etcd-grpc.svg?style=flat-square
-[download-url]: https://npmjs.org/package/egg-etcd-grpc
-
 <!--
 Description here.
 -->
@@ -143,7 +123,7 @@ app.grpcClient.demoRpc.passport.profile.ProfileService.getUserInfo({userId: '230
 
 ## Questions & Suggestions
 
-Please open an issue [here](https://github.com/eggjs/egg/issues).
+Please open an issue [here](https://github.com/lihuanwz/egg-etcd-grpc/issues).
 
 ## License
 

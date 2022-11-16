@@ -46,12 +46,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eggjs/egg-etcd-grpc.git"
+    "url": "git+https://github.com/lihuanwz/egg-etcd-grpc.git"
   },
   "bugs": {
-    "url": "https://github.com/eggjs/egg/issues"
+    "url": "https://github.com/lihuanwz/egg-etcd-grpc/issues"
   },
-  "homepage": "https://github.com/eggjs/egg-etcd-grpc#readme",
+  "homepage": "https://github.com/lihuanwz/egg-etcd-grpc#readme",
   "author": "wanshen",
   "license": "MIT"
 }
