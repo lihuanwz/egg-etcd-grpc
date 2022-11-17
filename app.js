@@ -55,9 +55,7 @@ module.exports = async app => {
 };
 
 function watcher(rpcName) {
-  const etcdObject = definition[rpcName].etcdObject;
-  const etcdConfig = definition[rpcName].etcdConfig;
-  const grpcClients = definition[rpcName].grpcClients;
+  const { etcdObject, etcdConfig, grpcClients } = definition[rpcName];
   if (definition[rpcName] === undefined) {
     throw new Error('RPC[' + rpcName + '] server not found');
   }
@@ -101,8 +99,7 @@ async function getAllServices(app, rpcName, service) {
   if (definition[rpcName] === undefined) {
     throw new Error('RPC[' + rpcName + '] server not found');
   }
-  const grpcConfig = definition[rpcName].grpcConfig;
-  const grpcClients = definition[rpcName].grpcClients;
+  const { grpcConfig, grpcClients } = definition[rpcName].grpcConfig;
   const protoPath = path.join(app.baseDir, grpcConfig.protoPath);
   if (!fs.existsSync(protoPath)) {
     throw new Error('no proto file');
