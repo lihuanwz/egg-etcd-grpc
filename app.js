@@ -25,7 +25,6 @@ module.exports = async app => {
     let etcdObject = new Etcd3(etcdConfig);
     let grpcClients = {};
 
-    // 获取GPRC服务所在服务器地址，如：{ 'demo.rpc/7587866614905501830': '127.0.0.1:7931' }
     const keyValue = await etcdObject.getAll()
       .prefix(etcdConfig.key + '/');
     let i = 0;
@@ -55,7 +54,6 @@ module.exports = async app => {
   }
 };
 
-// 处理ETCD服务发现
 function watcher(rpcName) {
   const etcdObject = definition[rpcName].etcdObject;
   const etcdConfig = definition[rpcName].etcdConfig;
@@ -89,7 +87,6 @@ function watcher(rpcName) {
     });
 }
 
-// 随机数
 function rand(min, max) {
   return parseInt(Math.random() * (max - min + 1) + min, 10);
 }
