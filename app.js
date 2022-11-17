@@ -48,8 +48,8 @@ module.exports = async app => {
       RpcCons: null,
       grpcCore: null,
     };
-    app.gprcClient = {};
-    app.gprcClient[rpcName] = await createClient(app, rpcName);
+    app.grpcClient = {};
+    app.grpcClient[rpcName] = await createClient(app, rpcName);
 
     watcher(rpcName);
   }
