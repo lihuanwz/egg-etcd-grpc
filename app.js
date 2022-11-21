@@ -5,6 +5,7 @@ const grpcCore = require('@grpc/grpc-js');
 const path = require('node:path');
 const fs = require('node:fs');
 const {Etcd3} = require('etcd3');
+const GrpcCallException = require('./exception')
 
 const definition = {
   // key: {
@@ -36,7 +37,7 @@ module.exports = async app => {
       i++;
     }
     if (i === 0) {
-      throw new Error('RPC[' + rpcName + '] server not found');
+      throw new GrpcCallException('RPC[' + rpcName + '] server not found');
     }
 
     definition[rpcName] = {
@@ -57,7 +58,7 @@ module.exports = async app => {
 function watcher(rpcName) {
   const { etcdObject, etcdConfig, grpcClients } = definition[rpcName];
   if (definition[rpcName] === undefined) {
-    throw new Error('RPC[' + rpcName + '] server not found');
+    throw new GrpcCallException('RPC[' + rpcName + '] server not found');
   }
 
   function del(kv) {
@@ -97,12 +98,12 @@ async function createClient(app, rpcName) {
 
 async function getAllServices(app, rpcName, service) {
   if (definition[rpcName] === undefined) {
-    throw new Error('RPC[' + rpcName + '] server not found');
+    throw new GrpcCallException('RPC[' + rpcName + '] server not found');
   }
-  const { grpcConfig, grpcClients } = definition[rpcName].grpcConfig;
+  const { grpcConfig, grpcClients } = definition[rpcName];
   const protoPath = path.join(app.baseDir, grpcConfig.protoPath);
   if (!fs.existsSync(protoPath)) {
-    throw new Error('no proto file');
+    throw new GrpcCallException('no proto file');
   }
   const protoPaths = fs.readdirSync(protoPath);
   for (const protoName of protoPaths) {
@@ -172,7 +173,7 @@ function buildService(rpcName, service, proto) {
 
 function runService(rpcName, method, params) {
   if (!definition[rpcName]) {
-    throw new Error('RPC[' + rpcName + '] server not found');
+    throw new GrpcCallException('RPC[' + rpcName + '] server not found');
   }
 
   return new Promise((resolve, reject) => {
@@ -180,23 +181,23 @@ function runService(rpcName, method, params) {
     const grpcClients = definition[rpcName].grpcClients;
     const keys = Object.keys(definition[rpcName].grpcClients);
     if (keys.length === 0) {
-      reject(new Error('RPC[' + rpcName + '] server not found'));
+      reject(new GrpcCallException('RPC[' + rpcName + '] server not found'));
       return;
     }
     let index = rand(0, keys.length - 1);
     const grpcClient = grpcClients[keys[index]];
     if (grpcClient.RpcCons === null) {
-      reject(new Error('RPC[' + rpcName + '] server not found'));
+      reject(new GrpcCallException('RPC[' + rpcName + '] server not found'));
       return;
     }
 
     grpcClient.RpcCons.waitForReady(Date.now() + deadline, (error) => {
       if (error) {
-        reject(error);
+        reject(new GrpcCallException(error));
       } else {
         grpcClient.RpcCons[method](params, (err, res) => {
           if (err) {
-            reject(err);
+            reject(new GrpcCallException(err));
           } else {
             resolve(res);
           }
