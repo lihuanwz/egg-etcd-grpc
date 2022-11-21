@@ -5,7 +5,7 @@ const grpcCore = require('@grpc/grpc-js');
 const path = require('node:path');
 const fs = require('node:fs');
 const {Etcd3} = require('etcd3');
-const GrpcCallException = require('./exception')
+const GrpcCallException = require('./exception/gpscall')
 
 const definition = {
   // key: {
