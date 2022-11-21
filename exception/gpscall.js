@@ -3,11 +3,17 @@
  */
 class GrpcCallException extends Error {
   constructor(err) {
-    super(err.message);
-    this.message = err.message;
-    this.code = err.code;
-    this.details = err.details;
-    this.metadata = err.metadata;
+    if (typeof err === 'string') {
+      super(err);
+      this.message = err;
+    } else {
+      super(err.message);
+      this.message = err.message;
+      this.code = err.code;
+      this.details = err.details;
+      this.metadata = err.metadata;
+    }
   }
 }
+
 module.exports = GrpcCallException;
