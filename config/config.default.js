@@ -16,7 +16,8 @@ exports.etcdGrpc = {
     //         auth: {
     //             username: '',
     //             password: '',
-    //         }
+    //         },
+    //         dialTimeout: 100*1000,    // 100秒
     //     },
     //     grpc: {
     //         loaderOption: {

@@ -1,6 +1,6 @@
 {
   "name": "egg-etcd-grpc",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "egg etcd-grpc client plugin",
   "eggPlugin": {
     "name": "etcdGrpc"
