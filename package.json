@@ -1,6 +1,6 @@
 {
   "name": "egg-etcd-grpc",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "egg etcd-grpc client plugin",
   "eggPlugin": {
     "name": "etcdGrpc"
@@ -40,7 +40,8 @@
     "agent.js",
     "config",
     "exception",
-    "app"
+    "app",
+    "lib"
   ],
   "ci": {
     "version": "16, 18"
