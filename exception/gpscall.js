@@ -6,6 +6,7 @@ class GrpcCallException extends Error {
     if (typeof err === 'string') {
       super(err);
       this.message = err;
+      this.code = 2;
     } else {
       super(err.message);
       this.message = err.message;
